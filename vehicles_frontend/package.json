@@ -26,12 +26,17 @@
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
+    "axios": "^0.16.2",
     "babel-preset-stage-1": "^6.1.18",
     "lodash": "^3.10.1",
     "react": "^0.14.3",
+    "react-bootstrap": "^0.31.0",
     "react-dom": "^0.14.3",
+    "react-dropzone": "^3.13.2",
     "react-redux": "4.3.0",
     "react-router": "^2.0.1",
-    "redux": "^3.0.4"
+    "redux": "^3.0.4",
+    "sha1": "^1.1.1",
+    "superagent": "^3.5.2"
   }
 }

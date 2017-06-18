@@ -2,6 +2,7 @@ import React from 'react';
 import request from 'superagent';
 import { DropdownButton,MenuItem } from 'react-bootstrap';
 
+
 export default class ServiceTypes extends React.Component {
     constructor(){
         super();
@@ -22,7 +23,7 @@ export default class ServiceTypes extends React.Component {
         this.processRecord = this.processRecord.bind(this);
         this.deleteServiceType = this.deleteServiceType.bind(this);
         console.log("from 5 ServiceTypes");
-    }    
+    }
 
     serviceNameselect (eventKey){
          console.log("serviceNameselect evtKey",eventKey);
@@ -31,22 +32,22 @@ export default class ServiceTypes extends React.Component {
          console.log("name:"+eventKey.target.name);
          var fields = eventKey.target.name.split('_');
          var row=fields[1];
-         
+
          console.log("row:"+row);
 
         var newState = this.state;
          //newState[eventKey.target.name] = eventKey.target.value;
-         
+
          var old_servicename;
          var new_servicename = eventKey.target.value;
         console.log("new_servicename:"+new_servicename);
-             
+
          if (newState["serviceTypes"][row]) {
              old_servicename = newState["serviceTypes"][row].name ;
-             
+
              console.log("old_servicename:"+
                  old_servicename);
-            if ( old_servicename != 
+            if ( old_servicename !=
                     new_servicename ) {
                 newState["serviceTypes"][row].name=new_servicename;
                 console.log("new_vehicleType changing to :"+
@@ -57,7 +58,7 @@ export default class ServiceTypes extends React.Component {
         } else {
             newState["newrecord"]= 1;
             newState["addedServiceName"]=new_servicename;
-            this.setState(newState);            
+            this.setState(newState);
         }
     } // end of - serviceNameselect
 
@@ -68,22 +69,22 @@ export default class ServiceTypes extends React.Component {
          console.log("name:"+eventKey.target.name);
          var fields = eventKey.target.name.split('_');
          var row=fields[1];
-         
+
          console.log("row:"+row);
 
         var newState = this.state;
          //newState[eventKey.target.name] = eventKey.target.value;
-         
+
          var old_sDisplayName;
          var new_sDisplayName = eventKey.target.value;
         console.log("new_sDisplayName:"+new_sDisplayName);
-             
+
          if (newState["serviceTypes"][row]) {
              old_sDisplayName = newState["serviceTypes"][row].display_name ;
-             
+
              console.log("old_sDisplayName:"+
                  old_sDisplayName);
-            if ( old_sDisplayName != 
+            if ( old_sDisplayName !=
                     new_sDisplayName ) {
                 newState["serviceTypes"][row].display_name=new_sDisplayName;
                 console.log("new_sDisplayName changing to :"+
@@ -94,7 +95,7 @@ export default class ServiceTypes extends React.Component {
         } else {
             newState["newrecord"]= 1;
             newState["addedSdisplayName"]=new_sDisplayName;
-            this.setState(newState);            
+            this.setState(newState);
         }
     } // end of - sDisplayNameSelect
 
@@ -105,22 +106,22 @@ export default class ServiceTypes extends React.Component {
          console.log("name:"+eventKey.target.name);
          var fields = eventKey.target.name.split('_');
          var row=fields[1];
-         
+
          console.log("row:"+row);
 
         var newState = this.state;
          //newState[eventKey.target.name] = eventKey.target.value;
-         
+
          var old_sDescription;
          var new_sDescription = eventKey.target.value;
         console.log("new_sDescription:"+new_sDescription);
-             
+
          if (newState["serviceTypes"][row]) {
              old_sDescription = newState["serviceTypes"][row].description ;
-             
+
              console.log("old_sDescription:"+
                  old_sDescription);
-            if ( old_sDescription != 
+            if ( old_sDescription !=
                     new_sDescription ) {
                 newState["serviceTypes"][row].description=new_sDescription;
                 console.log("new_sDescription changing to :"+
@@ -131,7 +132,7 @@ export default class ServiceTypes extends React.Component {
         } else {
             newState["newrecord"]= 1;
             newState["addedSdescription"]=new_sDescription;
-            this.setState(newState);            
+            this.setState(newState);
         }
     } // end of - sDescriptionSelect
 
@@ -160,7 +161,7 @@ export default class ServiceTypes extends React.Component {
                     .send({
                             id: ( typeof this.state.changedRecordNum !== 'undefined' ? this.state.serviceTypes[this.state.changedRecordNum].id :
                                 ''),
-                            serviceName: temp_serviceName, 
+                            serviceName: temp_serviceName,
                             sDisplayName: temp_sDisplayName,
                             sDescription: temp_sDescription
                             })
@@ -184,7 +185,7 @@ export default class ServiceTypes extends React.Component {
                         var url="/listservicetypes"
                         request.get(url).then((response) => {
                             console.log("listserviceTypes response:",JSON.stringify(response.body));
-                            
+
                             var newState2 = x.state;
                             newState2["serviceTypes"] = response.body;
                             x.setState(newState2);
@@ -195,7 +196,7 @@ export default class ServiceTypes extends React.Component {
 
                     });
                 console.log("status 5:"+(typeof(this.state.processedStatus)));
-            }                
+            }
         } else {
             console.log("No change in changedRecordNum");
         }
@@ -206,9 +207,9 @@ export default class ServiceTypes extends React.Component {
         console.log("name:"+eventKey.target.name);
          var fields = eventKey.target.name.split('_');
          var row=fields[1];
-         
+
          console.log("row:"+row);
-        
+
         var x = this;
         request
             .post('/deleteservicetype')
@@ -229,7 +230,7 @@ export default class ServiceTypes extends React.Component {
                 var url="/listservicetypes"
                 request.get(url).then((response) => {
                     console.log("listservicetypes response:",JSON.stringify(response.body));
-                    
+
                     var newState = x.state;
                     newState["serviceTypes"] = response.body;
                     x.setState(newState);
@@ -238,14 +239,14 @@ export default class ServiceTypes extends React.Component {
     } // end of - deleteServiceType
 
     componentWillMount(){
-        // This method: componentWillMount is being 
+        // This method: componentWillMount is being
         //   called the first time the component is loaded right before
         //   the component is added to the page
         var url="/listservicetypes";
         var x = this;
         request.get(url).then((response) => {
             console.log("response",JSON.stringify(response.body));
-            
+
             x.setState({
                 serviceTypes : response.body
             })
@@ -273,7 +274,7 @@ export default class ServiceTypes extends React.Component {
                             <div className="col-md-4"><label>ServiceName </label></div>
                             <div className="col-md-4"><label>ServiceDisplayName</label></div>
                             <div className="col-md-4"><label >ServiceDescription</label></div>
-                        </div>    
+                        </div>
                         {this.state.serviceTypes &&
                             this.state.serviceTypes.map((tempserviceTypes, rownum) => (
                             <div key={rownum}>
@@ -299,7 +300,7 @@ export default class ServiceTypes extends React.Component {
                                     <div className="col-md-3">
                                         <input className="sDisplayName"
                                             id={"sDisplayName"+
-                                                tempserviceTypes.id} 
+                                                tempserviceTypes.id}
                                             type="text"
                                             name={"sDisplayName_"+rownum}
                                             value={
@@ -310,13 +311,13 @@ export default class ServiceTypes extends React.Component {
                                                     this.state.serviceTypes[rownum].display_name :
                                                     ""
                                                 }
-                                            onChange={this.sDisplayNameSelect} 
+                                            onChange={this.sDisplayNameSelect}
                                         />
                                     </div>
                                     <div className="col-md-3">
                                         <input className="sDescription"
                                             id={"sDescription"+
-                                                tempserviceTypes.id} 
+                                                tempserviceTypes.id}
                                             type="text"
                                             name={"sDescription_"+rownum}
                                             value={
@@ -327,7 +328,7 @@ export default class ServiceTypes extends React.Component {
                                                     this.state.serviceTypes[rownum].description :
                                                     ""
                                                 }
-                                            onChange={this.sDescriptionSelect} 
+                                            onChange={this.sDescriptionSelect}
                                         />
                                     </div>
 
@@ -335,42 +336,42 @@ export default class ServiceTypes extends React.Component {
                                         <button className="submitButton"
                                             type="submit"
                                             name={"removeservice_"+rownum}
-                                            onClick={this.deleteServiceType} 
+                                            onClick={this.deleteServiceType}
                                              >Delete Service
                                         </button>
                                     </div>
-                                </div>                            
-                            </div>         
+                                </div>
+                            </div>
                         ))}
                         <div className="row" onBlur={this.processRecord}>
                             <div className="col-md-3">
-                                <input className="serviceName" 
+                                <input className="serviceName"
                                     type="text"
                                     name={"serviceName_"+(this.state.serviceTypes.length+1)}
                                     value={this.state.addedServiceType}
-                                    onChange={this.serviceNameselect} 
+                                    onChange={this.serviceNameselect}
                                 />
                             </div>
                             <div className="col-md-3">
-                                <input className="sDisplayName" 
+                                <input className="sDisplayName"
                                     type="text"
                                     name={"sDisplayName_"+(this.state.serviceTypes.length+1)}
                                     value={this.state.addedVdisplayText}
-                                    onChange={this.sDisplayNameSelect} 
+                                    onChange={this.sDisplayNameSelect}
                                 />
                             </div>
                             <div className="col-md-3">
-                                <input className="sDescription" 
+                                <input className="sDescription"
                                     type="text"
                                     name={"sDescription_"+(this.state.serviceTypes.length+1)}
                                     value={this.state.addedVdisplayText}
-                                    onChange={this.sDescriptionSelect} 
+                                    onChange={this.sDescriptionSelect}
                                 />
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>    
+            </div>
       );
     }
 }

@@ -63,6 +63,7 @@ tmpuri = os.environ.get('GOOGLECLOUD_URI', cfguri)
 tmpproject_num = os.environ.get('GOOGLECLOUD_PROJECT_NUM', cfgproject_num)
 tmplocaldir = os.environ.get('GOOGLECLOUD_GC_LOCAL_DIR', cfglocaldir)
 
+
 @app.route('/downloadGCImages', methods=['POST', 'GET'])
 def downloadGCImages():
     # http://127.0.0.1:53000/downloadGCImages
@@ -79,7 +80,7 @@ def downloadGCImages():
         imagelist.append({
             "bucket_name":uri.bucket_name,
             "name":obj.name
-            
+
         })
         print("image added to json list")
         src_uri = boto.storage_uri(
@@ -119,7 +120,7 @@ def downloadGCImages():
         print("Images written to dir:"+tmplocaldir)
 
     return app.response_class(json.dumps(imagelist), content_type='application/json')
-  
+
 
 @app.route('/listGCBucketNames', methods=['POST', 'GET'])
 def listGCBucketNames():
@@ -137,7 +138,8 @@ def listGCBucketNames():
         })
 
     return app.response_class(json.dumps(bucketlist), content_type='application/json')
-  
+
+
 @app.route('/uploadImagestoGC', methods=['POST', 'GET'])
 def uploadImagestoGC():
     # http://127.0.0.1:53000/downloadGCImages
@@ -154,10 +156,12 @@ def uploadImagestoGC():
     bucket_dst_uri = boto.storage_uri(
             CATS_BUCKET + '/' + request.form.get("imageid"), GOOGLE_STORAGE)
     print("image :"+request.form.get("imageid"))
-    
+
     print("Images written to google cloud")
 
     return app.response_class(json.dumps(imagelist), content_type='application/json')
+
+
 @app.route('/getGoogleCloudInstanceList', methods=['POST', 'GET'])
 def getGoogleCloudInstanceList():
     # http://127.0.0.1:53000/getGoogleCloudInstanceList
@@ -175,4 +179,3 @@ def getGoogleCloudInstanceList():
     print("Instance list:"+json.dumps(response))
 
     return app.response_class(json.dumps(response), content_type='application/json')
-  

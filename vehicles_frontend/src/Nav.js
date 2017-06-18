@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link }  from 'react-router';
 
-import Navigationbar from './Navigationbar'
+import Navigationbar from './components/Navigationbar';
 
-export default class Main extends Component {
+export default class Nav extends Component {
     render() {
         return (
             <div>
@@ -11,7 +11,7 @@ export default class Main extends Component {
                     <Navigationbar />
                     {this.props.children}
                 </div>
-      </div>
-    );
-  }
+            </div>
+        );
+    }
 }
