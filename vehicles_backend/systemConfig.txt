@@ -1,0 +1,16 @@
+
+[PythonServerData]
+VEHICLE_SERVICE_PORT=53000
+
+[GoogleCloudInfo]
+GC_LOCAL_DIR=static/gcimages
+BUCKET_NAME=*
+PROJECT_ID=*
+CLIENT_ID=*
+CLIENT_SECRET=*
+URI=*
+PROJECT_NUM=*
+
+[ServerLocalFileData]
+UPLOAD_IMAGE_LOCAL_DIR=static/upimages
+
